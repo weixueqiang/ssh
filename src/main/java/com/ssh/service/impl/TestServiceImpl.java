@@ -9,9 +9,10 @@ import org.springframework.stereotype.Service;
  */
 @Service("testService")
 public class TestServiceImpl implements TestService {
+
+	public String test() {
+		// TODO Auto-generated method stub
+		  return null;
+	}
 	
-	@Override
-    public String test() {
-        return "test";
-    }
 }
