@@ -12,7 +12,7 @@ public class BaseHibernateTemplate extends HibernateTemplate{
 
 	@Override
 	protected void checkWriteOperationAllowed(Session session) throws InvalidDataAccessApiUsageException {
-		session.setFlushMode(FlushMode.COMMIT);
+//		session.setFlushMode(FlushMode.COMMIT);
 		super.checkWriteOperationAllowed(session);
 	}
 	

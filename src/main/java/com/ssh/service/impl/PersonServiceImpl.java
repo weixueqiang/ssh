@@ -36,6 +36,7 @@ public class PersonServiceImpl implements PersonService {
         person1.setPhone("18381005946"+insert);
         person1.setAddress("chenDu"+insert);
         person1.setRemark("this is XRog"+insert);
-        return personRepository.save(person1);
+        personRepository.save(person1);
+        return 2L;
     }
 }

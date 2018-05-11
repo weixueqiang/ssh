@@ -6,25 +6,27 @@ import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.ssh.entity.Person;
+import com.ssh.entity.User;
 import com.ssh.repository.PersonRepository;
-import com.ssh.repository.impl.PersonRepositoryImpl;
+import com.ssh.service.UserService;
+import com.ssh.service.impl.UserServiceImpl;
 
-public class DaoTest {
+public class UserDaoTest {
+
 	
 	ClassPathXmlApplicationContext ctx;
-	PersonRepository bean;
+	UserService bean;
 	
 	@Before
 	public void init() {
 		ctx=new ClassPathXmlApplicationContext("classpath:META-INF/applicationContext.xml",
 				"classpath:META-INF/spring-mvc.xml");
-		bean= ctx.getBean("personRepository", PersonRepository.class);
+		bean= ctx.getBean("userService", UserService.class);
 	}
 	
 	@Test
 	public void save() {
-		System.out.println(bean);
-		Person entity=new Person();
+		User entity=new User();
 		entity.setUsername("ceshi!");
 		bean.save(entity);
 	}
