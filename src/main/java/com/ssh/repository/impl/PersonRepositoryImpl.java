@@ -1,11 +1,13 @@
 package com.ssh.repository.impl;
 
 import com.ssh.repository.PersonRepository;
+import com.ssh.entity.BaseDao;
 import com.ssh.entity.Person;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -13,8 +15,8 @@ import java.util.List;
  * Created by XRog
  * On 2/2/2017.2:30 PM
  */
-@Repository
-public class PersonRepositoryImpl implements PersonRepository {
+@Repository("personRepository")
+public class PersonRepositoryImpl extends BaseDao implements PersonRepository {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -32,6 +34,7 @@ public class PersonRepositoryImpl implements PersonRepository {
     }
 
     public List<Person> findAll() {
+    	
         return null;
     }
 
@@ -39,8 +42,13 @@ public class PersonRepositoryImpl implements PersonRepository {
         getCurrentSession().persist(entity);
     }
 
+   
     public Long save(Person entity) {
-        return (Long)getCurrentSession().save(entity);
+    	Person p=this.baseHibernateTemplate.get(Person.class, 1L);
+    	System.out.println(p+"\n");
+    	this.baseHibernateTemplate.saveOrUpdate(entity);
+    	return 1L;
+//        return (Long)getCurrentSession().save(entity);
     }
 
     public void saveOrUpdate(Person entity) {
