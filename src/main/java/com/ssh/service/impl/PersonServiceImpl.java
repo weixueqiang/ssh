@@ -17,8 +17,7 @@ public class PersonServiceImpl implements PersonService {
     @Autowired
     private PersonRepository personRepository;
 
-//    @Transactional
-//   @Transactional(rollbackFor=Exception.class)
+   @Transactional(rollbackFor=Exception.class)
     public Long savePerson() {
 //        Person person = new Person();
         String insert="_23";
@@ -31,11 +30,12 @@ public class PersonServiceImpl implements PersonService {
 //        	throw new RuntimeException();
 //        }
         Person person1 = new Person();
-        insert="_14";
+        insert="_15";
         person1.setUsername("XRog"+insert);
         person1.setPhone("18381005946"+insert);
         person1.setAddress("chenDu"+insert);
         person1.setRemark("this is XRog"+insert);
+        int i=1/0;
         personRepository.save(person1);
         return 2L;
     }

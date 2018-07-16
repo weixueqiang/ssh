@@ -65,6 +65,7 @@
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
+		<property name="nestedTransactionAllowed" value="true"/>
 	</bean>
 	<!-- <bean id="baseHibernateTemplate"
 		class="com.ssh.entity.BaseHibernateTemplate">
@@ -77,7 +78,7 @@
 	
 	<tx:annotation-driven
 		transaction-manager="transactionManager" />
-	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+	<!-- <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>
             <tx:method name="get*" propagation="SUPPORTS" read-only="true" />
             <tx:method name="count*" propagation="SUPPORTS" read-only="true" />
@@ -85,15 +86,15 @@
             <tx:method name="list*" propagation="SUPPORTS" read-only="true" />
             <tx:method name="*" read-only="false" propagation="REQUIRED" />
         </tx:attributes>
-    </tx:advice>
+    </tx:advice> -->
  <!-- <aop:config expose-proxy="true">
         <aop:pointcut id="txPointcut" expression="execution(* com.ssh.repository.impl..*.*(..))" />
         <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
     </aop:config> -->
- <aop:config expose-proxy="true">
+ <!-- <aop:config expose-proxy="true">
         <aop:pointcut id="txPointcut" expression="execution(* com.ssh.service.impl..*.*(..))" />
         <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
-    </aop:config>
+    </aop:config> -->
 
 
 

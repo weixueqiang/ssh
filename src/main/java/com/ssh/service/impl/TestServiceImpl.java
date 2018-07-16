@@ -1,7 +1,14 @@
 package com.ssh.service.impl;
 
+import com.ssh.entity.User;
+import com.ssh.service.PersonService;
 import com.ssh.service.TestService;
+import com.ssh.service.UserService;
+
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by XRog
@@ -10,9 +17,26 @@ import org.springframework.stereotype.Service;
 @Service("testService")
 public class TestServiceImpl implements TestService {
 
+	@Resource
+	private UserService userService;
+	
+	@Resource
+	private PersonService personService;
+	
+	@Transactional(rollbackFor=Exception.class)
 	public String test() {
-		// TODO Auto-generated method stub
-		  return null;
+		User user=new User();
+		user.setPassword("password");
+		user.setSalt("salt");
+		user.setUsername("--->>>");
+		try {
+			userService.save(user);
+		}catch(Exception e) {
+			System.err.println("userSerivce..>>>>>>");
+			e.printStackTrace();
+		}
+		personService.savePerson();
+		return null;
 	}
 	
 }
