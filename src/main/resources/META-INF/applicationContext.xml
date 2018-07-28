@@ -24,11 +24,19 @@
 		<!-- <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Co'nt'roll [o'nue'roll]"/>
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/> -->
 	</context:component-scan>
-	<mvc:annotation-driven />
-
+	<mvc:annotation-driven conversion-service="converService"/>
+<!-- conversion-service="converService" -->
+	 <bean id="converService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="converters">
+			<list>
+				<bean class="com.ssh.util.DateConverter"></bean>
+			</list>
+		</property>
+	</bean> 
+	
 	<!--扫描配置文件(这里指向的是之前配置的那个config.properties) -->
 	<context:property-placeholder
-		location="classpath:/config.properties" />
+		location="classpath:/config2.properties" />
 
 	<!--配置数据源 -->
 	<bean id="dataSource"
@@ -42,6 +50,7 @@
 		<property name="minPoolSize" value="1" />       <!--最小连接数 -->
 		<property name="initialPoolSize" value="10" />      <!--初始化连接池内的数据库连接 -->
 		<property name="maxIdleTime" value="20" />  <!--最大空闲时间 -->
+		<property name="preferredTestQuery" value="true"/>
 	</bean>
 
 	<!--配置session工厂 -->

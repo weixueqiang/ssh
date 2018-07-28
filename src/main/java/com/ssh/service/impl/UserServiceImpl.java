@@ -16,7 +16,6 @@ public class UserServiceImpl implements UserService{
 	@Qualifier("userDao")
 	private UserDao userDao;
 	
-	@Override
 	public void save(User user) {
 		userDao.save(user);
 	}

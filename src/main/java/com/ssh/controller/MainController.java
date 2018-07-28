@@ -5,6 +5,7 @@ import com.ssh.service.PersonService;
 import com.ssh.service.TestService;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,6 +44,19 @@ public class MainController {
     	System.out.println("test----------\n");
     	req.setAttribute("chn", "测试");
     	return "test";
+    }
+    
+    @RequestMapping("/index")
+    public String index(HttpServletRequest req) {
+    	return "index";
+    }
+    
+    @RequestMapping("/date")
+    @ResponseBody
+    public Date date(Date date) {
+    	System.out.println(date);
+    	date.setTime(date.getTime()+24*60*60*1000L);
+    	return date;
     }
     
 }

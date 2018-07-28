@@ -5,36 +5,37 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.ssh.controller.MainController;
 import com.ssh.entity.Person;
 import com.ssh.repository.PersonRepository;
-import com.ssh.repository.impl.PersonRepositoryImpl;
+import com.ssh.service.PersonService;
 
-public class DaoTest {
+public class ServiceTest2 {
 	
 	ClassPathXmlApplicationContext ctx;
-	PersonRepository bean;
+	PersonService bean;
 	
 	@Before
 	public void init() {
 		ctx=new ClassPathXmlApplicationContext("classpath:META-INF/applicationContext.xml",
 				"classpath:META-INF/spring-mvc.xml");
-		bean= ctx.getBean("personRepository", PersonRepository.class);
+		bean= ctx.getBean("personService", PersonService.class);
 	}
 	
 	@Test
 	public void save() {
+		System.out.println(bean);
 		Person entity=new Person();
-		String insert="_2";
-		entity.setUsername("ceshi!"+insert);
-		entity.setAddress("address"+insert);
-		entity.setCreated(System.currentTimeMillis());
-		entity.setPhone("15859578615"+insert);
-		entity.setRemark("remark"+insert);
-		bean.save(entity);
+		entity.setUsername("ceshi!service");
+		bean.savePerson();
 	}
 	
-	
-	
+	@Test
+	public void objtest() {
+		MainController obj= ctx.getBean("mainController", MainController.class);
+		System.out.println(obj);
+		obj.savePerson();
+	}
 	
 	@After
 	public void destory() {
